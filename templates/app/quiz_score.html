@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Completed - quiesy</title>
+    <link rel="stylesheet" href="{% static 'css/quiz_score.css' %}">
+</head>
+<body>
+    <div class="completion-container">
+        <div class="completion-header">
+            <div class="completion-icon">✓</div>
+            <h2 class="completion-title">Quiz Completed!</h2>
+            <p class="completion-message">Thank you, your quiz has been submitted.</p>
+        </div>
+        
+        <div class="score-display">
+            Your score: {{ attempt.score }}
+        </div>
+        
+        {% if attempt.quiz.review_on %}
+        <div class="review-section">
+            <h3 class="review-title">Review Available</h3>
+            <a href="{% url 'quiz_review' attempt.id %}" class="btn review-btn">View Quiz Review</a>
+        </div>
+        {% else %}
+        <div class="message-box">
+            <p>Review for this quiz is not currently available.</p>
+        </div>
+        <a href="http://127.0.0.1:8000/student/{{attempt.quiz.quiz_code}}/start/" class="btn return-btn">Check Back Later</a>
+        {% endif %}
+    </div>
+</body>
+</html>

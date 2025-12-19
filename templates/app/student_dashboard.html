@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/student_dashboard.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="title">🎓 {{ student_name|title }}</h1>
+    <p class="email">{{ email }}</p>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat-card">
+            <h3>{{ total_quizzes }}</h3>
+            <p>Quizzes Attempted</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ average_score|floatformat:2 }}</h3>
+            <p>Average Score</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ attendance_percentage }}%</h3>
+            <p>Attendance</p>
+        </div>
+    </div>
+
+    <!-- ATTEMPTS TABLE -->
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Quiz</th>
+                    <th>Score</th>
+                    <th>Date</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in attempts %}
+                <tr>
+                    <td>{{ a.quiz.title }}</td>
+                    <td>{{ a.score }}</td>
+                    <td>{{ a.completed_at|date:"d M Y" }}</td>
+                    <td>
+                        <a href="{% url 'quiz_review' a.id %}">Review</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No attempts found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

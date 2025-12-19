@@ -1,0 +1,135 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* ================= BODY ================= */
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1e293b, #020617 75%);
+    color: #e5e7eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+/* ================= CONTAINER ================= */
+#delete-confirm-container {
+    width: 100%;
+    max-width: 520px;
+    padding: 40px 32px;
+    text-align: center;
+    border-radius: 20px;
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.95),
+        rgba(2, 6, 23, 0.98)
+    );
+    border: 1px solid rgba(255,255,255,0.06);
+    animation: fadeIn 0.45s ease;
+}
+
+/* ================= ICON (OPTIONAL BUT MATCHES STYLE) ================= */
+#delete-confirm-container::before {
+    content: "⚠";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: #f87171;
+    color: #020617;
+    font-size: 2.4rem;
+    font-weight: 900;
+}
+
+/* ================= TITLE ================= */
+#delete-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #f87171, #fb7185);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ================= FORM ================= */
+#delete-form {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ================= BUTTONS ================= */
+#delete-form .btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+    min-width: 140px;
+}
+
+/* DELETE BUTTON */
+#btn-delete {
+    background: #f87171;
+    color: #020617;
+}
+
+#btn-delete:hover {
+    background: #fb7185;
+    transform: translateY(-2px);
+}
+
+/* CANCEL BUTTON */
+#btn-cancel {
+    background: #facc15;
+    color: #020617;
+}
+
+#btn-cancel:hover {
+    background: #fde68a;
+    transform: translateY(-2px);
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 576px) {
+    #delete-confirm-container {
+        padding: 32px 22px;
+    }
+
+    #delete-form {
+        flex-direction: column;
+    }
+
+    #delete-form .btn {
+        width: 100%;
+        padding: 14px;
+    }
+}

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rank Card</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/rank_card.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="page-title">🏆 Rank Card – {{ quiz.title }}</h1>
+
+    <!-- ===== TOP 3 PODIUM ===== -->
+    <div class="cards">
+        {% for s in top_3 %}
+        <div class="card 
+            {% if s.rank == 1 %}gold
+            {% elif s.rank == 2 %}silver
+            {% else %}bronze{% endif %}">
+            
+            <div class="rank-badge">
+                {{ s.rank }}{% if s.rank == 1 %}st{% elif s.rank == 2 %}nd{% else %}rd{% endif %}
+            </div>
+
+            <h3 class="student-name">{{ s.name }}</h3>
+            <p class="score">Score: <strong>{{ s.score }}</strong></p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ===== ALL RANKS TABLE ===== -->
+    <div class="table-wrapper">
+        <h2 class="section-title">📊 All Students Rank</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in all_ranks %}
+                <tr>
+                    <td>{{ r.rank }}</td>
+                    <td>{{ r.name }}</td>
+                    <td>{{ r.score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* ================= BODY ================= */
+body {
+    background: radial-gradient(
+        circle at top,
+        #1e293b,
+        #020617 70%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    color: #e5e7eb;
+    overflow: hidden;
+}
+
+/* ================= BACKGROUND GLOW ================= */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(160px);
+    opacity: 0.55;
+    z-index: 0;
+}
+
+body::before {
+    background: #2af598;
+    top: -150px;
+    left: -150px;
+}
+
+body::after {
+    background: #009efd;
+    bottom: -180px;
+    right: -180px;
+}
+
+/* ================= CONTAINER ================= */
+.auth-container {
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ================= CARD ================= */
+.auth-card {
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.94),
+        rgba(2, 6, 23, 0.97)
+    );
+    border-radius: 22px;
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.85),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    animation: cardEnter 0.9s ease forwards;
+}
+
+/* ================= HEADER ================= */
+.auth-header {
+    padding: 34px 30px;
+    text-align: center;
+    background: linear-gradient(
+        135deg,
+        #020617,
+        #111827
+    );
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.auth-title {
+    font-size: 1.9rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    background: linear-gradient(90deg, #facc15, #fde68a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.auth-subtitle {
+    font-size: 0.95rem;
+    color: #e5e7eb;
+    opacity: 0.85;
+}
+
+/* ================= FORM ================= */
+.auth-form {
+    padding: 32px 30px;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #c7d2fe;
+}
+
+/* ================= INPUTS ================= */
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid #1f2937;
+    background: #020617;
+    color: #e5e7eb;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: #6b7280;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow:
+        0 0 0 4px rgba(56, 189, 248, 0.25),
+        0 0 30px rgba(56, 189, 248, 0.35);
+}
+
+/* ================= ERRORS ================= */
+.form-error {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #fb7185;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    cursor: pointer;
+    border: none;
+    transition: all 0.35s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(
+        90deg,
+        #2af598,
+        #009efd
+    );
+    color: #020617;
+    box-shadow:
+        0 0 30px rgba(42, 245, 152, 0.6),
+        0 10px 25px rgba(0, 158, 253, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow:
+        0 0 50px rgba(42, 245, 152, 0.9),
+        0 15px 40px rgba(0, 158, 253, 0.6);
+}
+
+/* ================= FOOTER ================= */
+.auth-footer {
+    padding: 0 30px 30px;
+    text-align: center;
+}
+
+.auth-link {
+    color: #93c5fd;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 576px) {
+    .auth-form {
+        padding: 26px 22px;
+    }
+
+    .auth-footer {
+        padding: 0 22px 26px;
+    }
+
+    .auth-title {
+        font-size: 1.6rem;
+    }
+}

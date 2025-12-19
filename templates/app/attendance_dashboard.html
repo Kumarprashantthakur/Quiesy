@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/attendance_dashboard.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="page-title">📋 Attendance Dashboard</h1>
+
+    {% for item in attendance_data %}
+    <div class="subject-card">
+        <h2 class="subject-title">📘 {{ item.subject }}</h2>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Attempts</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for s in item.students %}
+                    <tr>
+                        <td data-label="Roll No">{{ s.roll }}</td>
+                        <td data-label="Name">{{ s.name }}</td>
+                        <td data-label="Email" class="email-cell">{{ s.email }}</td>
+                        <td data-label="Status">
+                            <span class="status present">Present</span>
+                        </td>
+                        <td data-label="Attempts">{{ s.attempts }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiesy | Interactive Quiz Platform</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+<div class="home-container">
+
+    <!-- ================= HERO SECTION ================= -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Quiesy</h1>
+            <p class="hero-subtitle">Smart • Secure • Interactive Quizzes</p>
+
+            <p class="hero-description">
+                Quiesy helps educators create engaging quizzes and enables students
+                to participate effortlessly. Track performance, analyze results,
+                and improve learning outcomes — all from one platform.
+            </p>
+
+            <div class="hero-actions">
+                <a href="{% url 'teacher_register' %}" class="btn btn-primary">
+                    Get Started as Teacher
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+
+        <!-- ================= CTA SECTION ================= -->
+        <section class="cta-section">
+            <div class="cta-card">
+                <h2>Create & Manage Quizzes Easily</h2>
+                <p>
+                    Register as a teacher to create quizzes, share links with students,
+                    and view detailed performance analytics.
+                </p>
+            <div class="cta-buttons">
+            <a href="{% url 'teacher_register' %}" class="btn btn-primary">
+                Teacher Portal
+            </a>
+
+            <a href="{% url 'student_dashboard' %}" class="btn btn-secondary">
+                Student Portal
+            </a>
+        </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SAMPLE QUIZ ================= -->
+        <section class="example-section">
+            <h2 class="section-title">Try a Sample Quiz</h2>
+            <p class="section-description">
+                Experience the student interface by attempting a demo quiz.
+            </p>
+
+            <div class="example-card">
+                <h3>General Knowledge Quiz</h3>
+                <p>
+                    A short quiz with 5 questions to help you understand how Quiesy works.
+                </p>
+
+                <div class="quiz-link-container">
+                    <input
+                        type="text"
+                        id="example-quiz-link"
+                        value="http://127.0.0.1:8000/student/03e5d9e9-f8e6-444c-9b94-b5d1813e3e4f/start/"
+                        readonly
+                        class="quiz-link-input"
+                    >
+                    <button onclick="copyExampleLink()" class="btn btn-secondary copy-btn">
+                        Copy Link
+                    </button>
+                </div>
+                <br></br>
+
+                <a href="http://127.0.0.1:8000/student/03e5d9e9-f8e6-444c-9b94-b5d1813e3e4f/start/"
+                   class="btn btn-outline">
+                    Start Quiz
+                </a>
+            </div>
+        </section>
+
+        <!-- ================= FEATURES ================= -->
+        <section class="features-section">
+            <h2 class="section-title">Why Choose Quiesy?</h2>
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Advanced Analytics</h3>
+                    <p>
+                        View quiz results, student scores, and performance trends instantly.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Secure Platform</h3>
+                    <p>
+                        Your quizzes and student data are protected with modern security practices.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Fully Responsive</h3>
+                    <p>
+                        Works smoothly on mobile, tablet, and desktop devices.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Easy to Use</h3>
+                    <p>
+                        Simple interface designed for both beginners and professionals.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="about-section">
+            <h2 class="section-title">About Quiesy</h2>
+
+            <div class="about-content">
+                <p>
+                    Quiesy is a modern quiz management system built for efficient learning
+                    and assessment. It focuses on simplicity, performance, and real-time insights
+                    to enhance the educational experience.
+                </p>
+
+                <div class="tech-stack">
+                    <h4>Technology Stack</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <p>© 2025 Quiesy. All Rights Reserved.</p>
+    </footer>
+
+</div>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+    function copyExampleLink() {
+        const input = document.getElementById("example-quiz-link");
+        input.select();
+        input.setSelectionRange(0, 99999);
+
+        navigator.clipboard.writeText(input.value).then(() => {
+            const btn = document.querySelector(".copy-btn");
+            btn.textContent = "Copied ✔";
+            btn.classList.add("success");
+
+            setTimeout(() => {
+                btn.textContent = "Copy Link";
+                btn.classList.remove("success");
+            }, 2000);
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/student_login.css' %}">
+</head>
+<body>
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+        <div class="icon">🎓</div>
+
+        <h1 class="title">Student Dashboard</h1>
+        <p class="subtitle">
+            Enter your email to view your quiz performance, attendance & results
+        </p>
+
+        <form method="get" action="{% url 'student_dashboard' %}">
+            <div class="input-group">
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn">
+                View Dashboard
+            </button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

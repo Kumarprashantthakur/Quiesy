@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Quiz - Quiesy</title>
+    <link rel="stylesheet" href="{% static 'css/quiz_start.css' %}">
+</head>
+<body>
+
+    <div class="quiz-start-container">
+        <div class="quiz-card">
+            <!-- Header -->
+            <header class="quiz-header">
+                <h1 class="quiz-title">Start Quiz: {{ quiz.title }}</h1>
+            </header>
+
+            <!-- Messages -->
+            <div id="message-container" class="message-container">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert-message">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- Start Quiz Form -->
+            <form id="start-quiz-form" data-quiz-code="{{ quiz.quiz_code }}" class="quiz-form">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="start_quiz">
+
+                <div class="form-group">
+                    <label for="student-name" class="form-label">Name</label>
+                    <input id="student-name" type="text" name="name" required class="form-input" placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="student-email" class="form-label">Email</label>
+                    <input id="student-email" type="email" name="email" required class="form-input" placeholder="Enter your email address">
+                </div>
+
+                <div class="form-group">
+                    <label for="student-roll" class="form-label">Roll Number</label>
+                    <input id="student-roll" type="text" name="roll" required class="form-input" placeholder="Enter your roll number">
+                </div>
+
+                {% if quiz.password %}
+                <div class="form-group">
+                    <label for="quiz-password" class="form-label">Quiz Password</label>
+                    <input id="quiz-password" type="password" name="password" required class="form-input" placeholder="Enter quiz password">
+                    <p id="password-error" class="error-message hidden"></p>
+                </div>
+                {% endif %}
+
+                <button type="submit" class="submit-btn primary-btn">
+                    Start Quiz
+                </button>
+            </form>
+
+            <!-- <div class="divider">
+                <span>or</span>
+            </div> -->
+
+            <!-- Review Quiz Form -->
+            <!-- {% if quiz.review_on %}
+            <form method="POST" class="quiz-form review-form">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="review_quiz">
+
+                <div class="form-group">
+                    <label for="review-name" class="form-label">Name</label>
+                    <input id="review-name" type="text" name="name" required class="form-input" placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="review-email" class="form-label">Email</label>
+                    <input id="review-email" type="email" name="email" required class="form-input" placeholder="Enter your email address">
+                </div>
+
+                <div class="form-group">
+                    <label for="review-roll" class="form-label">Roll Number</label>
+                    <input id="review-roll" type="text" name="roll" required class="form-input" placeholder="Enter your roll number">
+                </div>
+
+                <button type="submit" class="submit-btn secondary-btn">
+                    See Review
+                </button>
+            </form>
+            {% else %}
+            <div class="review-notice">
+                <p>Review is not available for this quiz</p>
+            </div>
+            {% endif %}
+        </div>
+    </div> -->
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('start-quiz-form');
+    const errorDiv = document.getElementById('password-error'); // may be null
+
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // safely reset error (only if exists)
+        if (errorDiv) {
+            errorDiv.classList.add('hidden');
+            errorDiv.textContent = '';
+        }
+
+        const formData = new FormData(form);
+        const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const code = form.dataset.quizCode;
+
+        try {
+            const resp = await fetch(`/student/${code}/start/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrf,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            });
+
+            const data = await resp.json();
+
+            if (data.ok) {
+                window.location.href = data.redirect_url;
+            } else {
+                if (errorDiv) {
+                    errorDiv.textContent = data.message || 'Invalid password';
+                    errorDiv.classList.remove('hidden');
+                } else {
+                    alert(data.message || 'Unable to start quiz');
+                }
+            }
+
+        } catch (err) {
+            if (errorDiv) {
+                errorDiv.textContent = 'Something went wrong. Please try again.';
+                errorDiv.classList.remove('hidden');
+            } else {
+                alert('Something went wrong. Please try again.');
+            }
+        }
+    });
+
+    // Auto-hide Django messages
+    setTimeout(() => {
+        const messageContainer = document.getElementById('message-container');
+        if (messageContainer) messageContainer.style.display = 'none';
+    }, 3000);
+});
+
+
+</script>
+</body>
+</html>

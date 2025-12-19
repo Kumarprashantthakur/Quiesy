@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Questions - QuizApp</title>
+    <link rel="stylesheet" href="{% static 'css/add_questions.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <header class="form-header">
+            <h1>Add Questions to Quiz</h1>
+            <p>Add multiple questions using the form below</p>
+        </header>
+
+        <form method="POST" class="question-form">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            
+            <div class="forms-container">
+                {% for form in formset %}
+                <div class="form-card">
+                    <h3 class="form-card-title">Question #{{ forloop.counter }}</h3>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.text.id_for_label }}">Question Text</label>
+                        {{ form.text }}
+                    </div>
+                    
+                    <div class="options-grid">
+                        <div class="form-group">
+                            <label for="{{ form.option1.id_for_label }}">Option 1</label>
+                            {{ form.option1 }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.option2.id_for_label }}">Option 2</label>
+                            {{ form.option2 }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.option3.id_for_label }}">Option 3</label>
+                            {{ form.option3 }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.option4.id_for_label }}">Option 4</label>
+                            {{ form.option4 }}
+                        </div>
+                    </div>
+                    
+                    <div class="correct-marks-row">
+                        <div class="form-group">
+                            <label for="{{ form.correct_option.id_for_label }}">Correct Option</label>
+                            {{ form.correct_option }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.marks.id_for_label }}">Marks</label>
+                            {{ form.marks }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Questions</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+    background: radial-gradient(circle at top, #1e293b, #020617 75%);
+    color: #e5e7eb;
+    padding: 24px;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ================= TITLE ================= */
+.page-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #facc15, #fde68a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ================= SUBJECT CARD ================= */
+.subject-card {
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.95),
+        rgba(2, 6, 23, 0.98)
+    );
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+}
+
+.subject-title {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fde68a;
+}
+
+/* ================= TABLE WRAPPER ================= */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ================= TABLE ================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+}
+
+thead {
+    background: rgba(255,255,255,0.04);
+}
+
+th, td {
+    padding: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    color: #facc15;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+tbody tr:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+/* ================= STATUS ================= */
+.status {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.present {
+    background: #16a34a;
+    color: #ecfdf5;
+}
+
+/* ================= EMAIL FIX ================= */
+.email-cell {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    font-size: 0.85rem;
+    color: #cbd5f5;
+}
+
+/* ================= MOBILE (CARD VIEW) ================= */
+@media (max-width: 576px) {
+
+    table, thead, tbody, tr, td, th {
+        display: block;
+        width: 100%;
+        min-width: unset;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    td {
+        text-align: right;
+        padding: 10px 0 10px 52%;
+        position: relative;
+        border: none;
+        font-size: 0.9rem;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 14px;
+        font-weight: 700;
+        color: #fde68a;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    .status {
+        margin-top: 6px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* ================= TABLET ================= */
+@media (min-width: 577px) and (max-width: 1024px) {
+
+    table {
+        font-size: 0.85rem;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .subject-title {
+        font-size: 1.3rem;
+    }
+}

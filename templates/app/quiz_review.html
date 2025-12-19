@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Review - {{ attempt.student_name }}</title>
+    <link rel="stylesheet" href="{% static 'css/quiz_review.css' %}">
+</head>
+<body>
+    <div class="review-container">
+        <header class="review-header">
+            <h1 class="review-title">Quiz Review - {{ attempt.student_name }}</h1>
+        </header>
+        
+        <div class="review-content">
+            <table class="review-table">
+                <thead>
+                    <tr>
+                        <th class="question-col">Question</th>
+                        <th class="answer-col">Student's Answer</th>
+                        <th class="answer-col">Correct Answer</th>
+                        <th class="status-col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for answer in attempt.answers.all %}
+                    <tr class="answer-row">
+                        <td class="question-text">{{ answer.question.text }}</td>
+
+                        <!-- Student's selected option text -->
+                        <td class="student-answer">
+                            {% if answer.selected_option == "1" %}
+                                {{ answer.question.option1 }}
+                            {% elif answer.selected_option == "2" %}
+                                {{ answer.question.option2 }}
+                            {% elif answer.selected_option == "3" %}
+                                {{ answer.question.option3 }}
+                            {% elif answer.selected_option == "4" %}
+                                {{ answer.question.option4 }}
+                            {% endif %}
+                        </td>
+
+                        <!-- Correct option text -->
+                        <td class="correct-answer">
+                            {% if answer.question.correct_option == 1 %}
+                                {{ answer.question.option1 }}
+                            {% elif answer.question.correct_option == 2 %}
+                                {{ answer.question.option2 }}
+                            {% elif answer.question.correct_option == 3 %}
+                                {{ answer.question.option3 }}
+                            {% elif answer.question.correct_option == 4 %}
+                                {{ answer.question.option4 }}
+                            {% endif %}
+                        </td>
+
+                        <td class="answer-status">{% if answer.is_correct %}✅{% else %}❌{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

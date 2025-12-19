@@ -1,0 +1,181 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* ================= BODY ================= */
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1e293b, #020617 75%);
+    color: #e5e7eb;
+    padding: 24px;
+}
+
+/* ================= CONTAINER ================= */
+.review-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 20px;
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.95),
+        rgba(2, 6, 23, 0.98)
+    );
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    animation: fadeIn 0.45s ease;
+}
+
+/* ================= HEADER ================= */
+.review-header {
+    padding: 24px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.review-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #facc15, #fde68a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ================= CONTENT ================= */
+.review-content {
+    padding: 26px;
+    overflow-x: auto;
+}
+
+/* ================= TABLE ================= */
+.review-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+}
+
+/* Table Head */
+.review-table th {
+    padding: 14px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fde68a;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-align: left;
+}
+
+/* Table Body */
+.review-table td {
+    padding: 14px;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    vertical-align: top;
+}
+
+/* Row Hover */
+.answer-row:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+/* ================= COLUMNS ================= */
+.question-col { width: 42%; }
+.answer-col   { width: 26%; }
+.status-col   {
+    width: 10%;
+    text-align: center;
+}
+
+/* ================= TEXT STYLES ================= */
+.question-text {
+    font-weight: 700;
+    color: #e5e7eb;
+}
+
+/* Student Answer (Wrong) */
+.student-answer {
+    color: #f87171;
+    font-weight: 700;
+}
+
+/* Correct Answer */
+.correct-answer {
+    color: #22c55e;
+    font-weight: 700;
+}
+
+/* Status Icon */
+.answer-status {
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+    .review-table {
+        font-size: 0.9rem;
+    }
+
+    .review-table th,
+    .review-table td {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .review-title {
+        font-size: 1.6rem;
+    }
+
+    .review-content {
+        padding: 20px;
+    }
+
+    .review-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .question-col { width: 38%; }
+    .answer-col   { width: 30%; }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding: 16px;
+    }
+
+    .review-table th,
+    .review-table td {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+    }
+
+    .answer-status {
+        font-size: 1rem;
+    }
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

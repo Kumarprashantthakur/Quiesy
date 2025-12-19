@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results - {{ quiz.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/student_results.css' %}">
+</head>
+<body>
+    <div class="results-container">
+        <header class="results-header">
+            <h1 class="results-title">Quiz Results - {{ quiz.title }}</h1>
+            <p class="results-subtitle">View all student attempts and scores</p>
+        </header>
+        
+        <div class="results-content">
+            {% if attempts %}
+            <div class="table-container">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th class="student-name">Student Name</th>
+                            <th class="student-email">Email</th>
+                            <th class="student-score">Score</th>
+                            <th class="start-time">Started At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for attempt in attempts %}
+                        <tr class="attempt-row">
+                            <td class="student-name">{{ attempt.student_name }}</td>
+                            <td class="student-email">{{ attempt.email }}</td>
+                            <td class="student-score">{{ attempt.score|default:"Not Attempted" }}</td>
+                            <td class="start-time">{{ attempt.started_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <p>No attempts yet.</p>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="results-footer">
+            <a href="{% url 'download_results_pdf' quiz.id %}" class="btn btn-primary">
+    Download Results (PDF)
+</a>
+<a href="{% url 'quiz_rank' quiz.id %}" class="btn btn-primary">
+    View Rank Card
+</a>
+
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
