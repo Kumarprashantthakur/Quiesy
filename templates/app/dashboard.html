@@ -58,10 +58,14 @@
                         <a href="{% url 'delete_quiz' quiz.id %}" class="action-btn delete-btn">Delete Quiz</a>
                     </div>
                     
-                    <div class="quiz-share">
-                        <p id="quiz-link-{{ quiz.id }}" class="quiz-link">http://127.0.0.1:8000/student/{{quiz.quiz_code}}/start/</p>
-                        <button onclick="copyLink({{ quiz.id }})" class="copy-btn">Copy Link</button>
-                    </div>
+                   <div class="quiz-share">
+    <p id="quiz-link-{{ quiz.id }}" class="quiz-link">
+        http://127.0.0.1:8000{% url 'start_quiz' quiz.quiz_code %}
+    </p>
+
+    <button onclick="copyLink({{ quiz.id }})" class="copy-btn">Copy Link</button>
+</div>
+
                      <div class="quiz-actions">
                            <span class="quiz-actions">Password : {{ quiz.password }}</span>
                     </div>

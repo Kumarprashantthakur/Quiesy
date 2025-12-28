@@ -1,28 +1,47 @@
 /* ================= RESET ================= */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: "Segoe UI", system-ui, sans-serif;
 }
 
+/* 🔥 REMOVE UNDERLINE FROM ALL LINKS */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a:hover {
+    text-decoration: none;
+}
+.results-link {
+    color: rgba(0, 0, 255, 0.73);
+}
+
+.results-link:hover {
+    text-decoration: underline;
+}
+
+/* ================= BASE ================= */
 html, body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
 }
 
 /* ================= BODY ================= */
 body {
     background: radial-gradient(circle at top, #1e293b, #020617 75%);
     color: #e5e7eb;
-    padding: 24px;
 }
 
 /* ================= CONTAINER ================= */
 .dashboard-container {
     max-width: 1200px;
-    width: 100%;
     margin: 0 auto;
+    padding: 16px;
 }
 
 /* ================= HEADER ================= */
@@ -30,8 +49,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    padding: 26px 30px;
+    gap: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
     border-radius: 18px;
     background: linear-gradient(
         180deg,
@@ -39,17 +59,15 @@ body {
         rgba(2, 6, 23, 0.98)
     );
     border: 1px solid rgba(255,255,255,0.06);
-    margin-bottom: 30px;
 }
 
 .user-email {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #9ca3af;
-    margin-bottom: 4px;
 }
 
 .user-welcome {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: #facc15;
 }
@@ -57,44 +75,33 @@ body {
 /* ================= NAV ================= */
 .dashboard-nav {
     display: flex;
-    gap: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .nav-btn {
-    padding: 10px 22px;
+    padding: 9px 18px;
     border-radius: 999px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    text-decoration: none;
-    transition: all 0.25s ease;
+    white-space: nowrap;
+    color: blue;
 }
 
-/* Create */
 .create-btn {
     background: #facc15;
     color: #020617;
 }
 
-.create-btn:hover {
-    background: #fde68a;
-}
-
-/* Logout */
 .logout-btn {
     background: transparent;
     color: #f87171;
     border: 1px solid #f87171;
 }
 
-.logout-btn:hover {
-    background: rgba(248,113,113,0.12);
-}
-
 /* ================= MAIN ================= */
 .dashboard-main {
-    width: 100%;
-    min-height: 60vh;
-    padding: 32px;
+    padding: 20px;
     border-radius: 18px;
     background: linear-gradient(
         180deg,
@@ -106,81 +113,74 @@ body {
 
 /* ================= TITLE ================= */
 .section-title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 800;
-    margin-bottom: 26px;
+    margin-bottom: 20px;
     color: #facc15;
 }
 
 /* ================= GRID ================= */
 .quizzes-container {
-    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 16px;
 }
 
 /* ================= CARD ================= */
 .quiz-card {
     background: #020617;
     border-radius: 16px;
-    padding: 22px;
+    padding: 18px;
     border: 1px solid rgba(255,255,255,0.05);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    transition: border 0.2s ease;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
 }
 
-.quiz-card:hover {
-    border-color: rgba(250,204,21,0.4);
-}
-
-/* ================= CARD TEXT ================= */
 .quiz-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 8px;
 }
 
 .quiz-subject {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 14px;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .subject-badge {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 999px;
     background: rgba(250,204,21,0.15);
     color: #fde68a;
 }
 
 .questions-count {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #9ca3af;
 }
 
 /* ================= ACTIONS ================= */
 .quiz-actions {
     display: flex;
-    gap: 10px;
-    margin-bottom: 14px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
 .action-btn {
-    padding: 8px 14px;
-    font-size: 0.8rem;
+    padding: 7px 12px;
+    font-size: 0.75rem;
     font-weight: 700;
     border-radius: 999px;
-    text-decoration: none;
+    white-space: nowrap;
 }
 
-/* Buttons */
 .add-questions-btn {
     background: rgba(250,204,21,0.15);
     color: #fde68a;
@@ -199,15 +199,14 @@ body {
 /* ================= SHARE ================= */
 .quiz-share {
     display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 10px;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .quiz-link {
-    flex: 1;
-    padding: 9px 12px;
-    font-size: 0.8rem;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 0.75rem;
     background: #020617;
     border-radius: 10px;
     color: #9ca3af;
@@ -217,33 +216,22 @@ body {
 }
 
 .copy-btn {
-    padding: 9px 16px;
+    align-self: flex-start;
+    padding: 8px 16px;
     border-radius: 999px;
     background: #facc15;
     color: #020617;
     font-weight: 800;
     border: none;
     cursor: pointer;
-    white-space: nowrap;
-}
-
-/* ================= RESULTS ================= */
-.results-link {
-    font-size: 0.85rem;
-    color: #93c5fd;
-    text-decoration: none;
 }
 
 /* ================= TOGGLE ================= */
-.quiz-settings {
-    margin-top: 10px;
-}
-
 .toggle-label {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #9ca3af;
 }
 
@@ -252,8 +240,8 @@ body {
 }
 
 .toggle-slider {
-    width: 44px;
-    height: 22px;
+    width: 42px;
+    height: 20px;
     background: #1f2937;
     border-radius: 999px;
     position: relative;
@@ -261,8 +249,8 @@ body {
 
 .toggle-slider::before {
     content: "";
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     background: white;
     position: absolute;
     top: 2px;
@@ -282,30 +270,20 @@ input:checked + .toggle-slider::before {
 /* ================= EMPTY ================= */
 .empty-state {
     text-align: center;
-    padding: 60px;
+    padding: 40px 20px;
     color: #9ca3af;
 }
 
-.create-first-btn {
-    margin-top: 18px;
-    padding: 12px 26px;
-    border-radius: 999px;
-    background: #facc15;
-    color: #020617;
-    font-weight: 800;
-    text-decoration: none;
+/* ================= RESPONSIVE ================= */
+@media (min-width: 640px) {
+    .quizzes-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-    .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .dashboard-nav {
-        width: 100%;
-        justify-content: space-between;
+@media (min-width: 1024px) {
+    .quizzes-container {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

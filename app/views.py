@@ -17,7 +17,10 @@ from django.views.decorators.cache import never_cache
 from datetime import timedelta
 from django.contrib.auth import login
 def home(request):
-    return render(request, 'app/home.html')
+    demo_quiz = Quiz.objects.first()
+    return render(request, 'app/home.html', {
+        'quiz': demo_quiz
+    })
 @login_required
 def teacher_dashboard(request):
     quizzes = Quiz.objects.filter(teacher=request.user).order_by('-created_at')
