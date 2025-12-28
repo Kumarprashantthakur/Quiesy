@@ -60,7 +60,7 @@
                     
                    <div class="quiz-share">
     <p id="quiz-link-{{ quiz.id }}" class="quiz-link">
-        https://quiesy.onrender.com{% url 'start_quiz' quiz.quiz_code %}
+        http://127.0.0.1:8000{% url 'start_quiz' quiz.quiz_code %}
     </p>
 
     <button onclick="copyLink({{ quiz.id }})" class="copy-btn">Copy Link</button>
